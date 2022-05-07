@@ -30,7 +30,7 @@ function Movie() {
   const [loading, setLoading] = useState(true);
   const [videoUrl, setVideoUrl] = useState("");
   const [savedStatus, setSavedStatus] = useState("");
-  //const [user, setUser] = useState([]);
+  
 
   useEffect(async () => {
     try {
