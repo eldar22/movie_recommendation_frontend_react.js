@@ -1,0 +1,204 @@
+/*.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}*/
+
+.movie-list-container {
+  min-height: 100vh;
+  background-color: rgb(33, 33, 32);
+  /*padding-top: 10vh;*/
+}
+
+.movie-poster {
+  height: 200px;
+  border: 2px solid white;
+}
+
+.app-header {
+  color: white;
+  font-size: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  margin-bottom: 10px;
+  z-index: 1;
+  background-color: black;
+}
+
+#profile-button {
+  position: absolute;
+  right: 2px;
+  top: 12px;
+}
+
+.movie-card {
+  margin-bottom: 10px;
+}
+
+.login-body {
+  background-color: rgb(33, 33, 32);
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+.login-page-info {
+  color: white;
+  text-align: center;
+}
+
+.login-form {
+  color: white;
+  margin: auto;
+}
+
+.movie-page-poster {
+  height: 260px;
+  width: 180px;
+}
+
+.movie-page-body {
+  background-color: rgb(33, 33, 32);
+  min-height: 100vh;
+  color: white;
+  padding: 10px;
+}
+
+.registration-body {
+  background-color: rgb(33, 33, 32);
+  min-height: 100vh;
+  color: white;
+  padding-top: 50px;
+}
+
+.comment-input {
+  width: 100%;
+  position: relative;
+  bottom: -2%;
+  right: 0;
+}
+
+.comment-input textarea {
+  margin-right: 0.5%;
+  margin-left: 0.2%;
+  width: 90%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: rgb(33, 33, 32);
+  color: white;
+}
+
+.comment-input Button {
+  margin-bottom: 5%;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.comments {
+  height: 38.5vh;
+  overflow: auto;
+}
+
+.section-name {
+  border-bottom: 1px solid white;
+}
+
+.comment li:nth-child(even) {
+  background-color: rgb(25, 25, 25);
+}
+
+.comment li {
+  padding: 10px;
+}
+
+.comment {
+  list-style-type: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgb(33, 33, 32);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(70, 70, 70);
+  border-radius: 5px;
+}
+
+.loading-page {
+  min-height: 100vh;
+  background-color: rgb(33, 33, 32);
+}
+
+.loading-spinner {
+  margin: auto;
+  padding-top: 20%;
+  text-align: center;
+}
+
+#disabled-save-button {
+  background-color: transparent;
+}
+
+.saved-movie-poster {
+  height: 60px;
+  width: 50px;
+  margin-right: 5px;
+}
+
+.saved-movies-list {
+  list-style-type: none;
+}
+
+.saved-movies-list-item {
+  margin-bottom: 2px;
+}
+
+.remove-saved-movie-button {
+  position: fixed;
+  right: 10px;
+}
+
+#select-small {
+  background-color: transparent;
+}
+
+#nav-bar {
+  background-color: rgb(28, 28, 27);
+  border-bottom: 2px solid black;
+  margin-bottom: 10px;
+}
+
+#select-genre {
+  border-radius: 5px;
+}
+
+.bi {
+  margin-left: 5px;
+}
+
+.registration-form {
+  margin-left: 20px;
+}
