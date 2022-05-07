@@ -34,18 +34,15 @@ function MoviesList() {
   const [user, setUser] = useState([]);
   const [sortOption, setSortOption] = useState("default");
   const [sorted, setSorted] = useState([]);
-  //const [getCookie, setCookie] = useState(GetCookie("user"));
+ 
 
   useEffect(async () => {
     try {
       await axios
-        //.get("https://imdb-api.com/en/API/Top250Movies/k_o8ktb4x4")
         .get(
           `https://imdb-api.com/API/AdvancedSearch/k_o8ktb4x4/?genres=${genre}`
         )
         .then((res) => {
-          //setTitle(res.data.Title);
-          //setMovieList(res.data.items);
           setMovieList(res.data.results);
           setSorted(res.data.results);
           console.log(res.data);
@@ -64,17 +61,6 @@ function MoviesList() {
       console.log(err);
     }
   }, [genre]);
-
-  /*useEffect(async () => {
-    await axios.get("http://localhost:3000/movies_list").then((res) => {
-      if (res.data === "Not logged in!") {
-        window.location.href = "http://localhost:3001/login";
-      } else {
-        setUser([res.data.firstName, res.data.lastName]);
-        console.log(GetCookie("user"));
-      }
-    });
-  }, []);*/
 
   useEffect(async () => {
     await axios
