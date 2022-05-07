@@ -6,8 +6,6 @@ import axios from "axios";
 import MoviesList from "./MoviesList";
 import setCookie from "./Cookies/setCookie";
 import Cookies from "js-cookie";
-//import { setCookie } from "../Cookies/Cookies";
-//import { cookies, setCookie } from "./Cookies/Cookies";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -70,9 +68,6 @@ function Login() {
               </Button>
             </Form>
           </Col>
-          {/*<Col sm={9} className="login-page-info">
-            <h1>EMovies</h1>
-                </Col>*/}
         </Row>
       </Container>
     </div>
