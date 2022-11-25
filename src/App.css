@@ -73,15 +73,14 @@
 }
 
 .movie-page-poster {
-  height: 260px;
-  width: 180px;
+  height: 100%;
+  width: 100%;
 }
 
 .movie-page-body {
   background-color: rgb(33, 33, 32);
   min-height: 100vh;
   color: white;
-  padding: 10px;
 }
 
 .registration-body {
@@ -93,15 +92,10 @@
 
 .comment-input {
   width: 100%;
-  position: relative;
-  bottom: -2%;
-  right: 0;
+  display: flex;
 }
 
 .comment-input textarea {
-  margin-right: 0.5%;
-  margin-left: 0.2%;
-  width: 90%;
   height: 40px;
   border-radius: 5px;
   padding: 5px;
@@ -111,7 +105,6 @@
 }
 
 .comment-input Button {
-  margin-bottom: 5%;
   background-color: transparent;
   border: 1px solid white;
 }

@@ -70,6 +70,7 @@ function Movie() {
         .then((res) => {
           setVideoUrl("https://www.youtube.com/embed/" + res.data.videoId);
         });
+      console.log(title);
 
       setLoading(false);
     } catch (err) {
@@ -96,11 +97,17 @@ function Movie() {
           e.preventDefault();
           try {
             await axios
-              .post("http://localhost:3000/movie", {
-                movieId: movieId,
-                title: title,
-                saved: "true"
-              })
+              .post(
+                "http://localhost:3000/movie",
+                {
+                  movieId: movieId,
+                  title: title,
+                  saved: "true"
+                },
+                {
+                  headers: { Authorization: `Bearer ${getCookie("user")}` }
+                }
+              )
               .then((res) => {
                 if (res.data === "Saved!") {
                   console.log("Saved!");
@@ -156,11 +163,26 @@ function Movie() {
     return (
       <div className="movie-page-body">
         <Container fluid>
-          <Row>
-            <Col sm={2}>
-              <img src={image} className="movie-page-poster" />
+          <Row
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Col
+              xs={12}
+              sm={9}
+              md={3}
+              lg={2}
+              style={{ marginRight: "20px" }}
+              className="movie-poster-container"
+            >
+              <div>
+                <img src={image} className="movie-page-poster" />
+              </div>
             </Col>
-            <Col sm={10}>
+            <Col xs={12} sm={9} md={8} lg={9}>
               <h3 className="movie-page-title">{title}</h3>
               <h5>Runtime: {runtime}</h5>
               <h5>Imdb rating: {rating}</h5>
@@ -170,55 +192,99 @@ function Movie() {
               {handleSavedStatus()}
             </Col>
           </Row>
-          <Row>
-            <Col sm={12}>
-              <hr />
-              <Row>
-                <Col sm={5} className="trailer">
-                  <p className="section-name">Trailer</p>
-                  <iframe title="nn" width="100%" height="300" src={videoUrl} />
-                </Col>
-                <Col sm={1}></Col>
-                <Col sm={6} className="comment-section">
-                  <p className="section-name">Comments</p>
-                  <Row className="comments">
-                    <ul className="comment">{showComments}</ul>
-                  </Row>
-                  <div className="comment-input">
-                    <textarea
-                      placeholder="Leave a comment..."
-                      value={comment}
-                      onChange={(e) => {
-                        setComment(e.target.value);
-                      }}
-                    />
-                    <Button
-                      variant="primary"
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        try {
-                          await axios
-                            .post("http://localhost:3000/movie", {
+          <hr />
+          <Row
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "0 10px 0 10px"
+            }}
+          >
+            <Col
+              xs={12}
+              sm={12}
+              md={5}
+              lg={5}
+              className="trailer"
+              style={{ padding: "0px", marginRight: "5px", height: "40vh" }}
+            >
+              <p className="section-name">Trailer</p>
+              <iframe title="nn" width="100%" height="100%" src={videoUrl} />
+            </Col>
+
+            <Col
+              xs={12}
+              sm={12}
+              md={5}
+              lg={5}
+              className="comment-section"
+              style={{ padding: "0px", marginLeft: "5px", height: "40vh" }}
+            >
+              <p className="section-name">Comments</p>
+              <Row className="comments">
+                <ul className="comment">{showComments}</ul>
+              </Row>
+              <Col
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0px",
+                  height: "40px"
+                }}
+                className="comment-input"
+              >
+                <div
+                  style={{
+                    width: "90%",
+                    height: "100%",
+                    marginRight: "5px"
+                  }}
+                >
+                  <textarea
+                    placeholder="Leave a comment..."
+                    value={comment}
+                    onChange={(e) => {
+                      setComment(e.target.value);
+                    }}
+                    style={{ width: "100%", height: "100%" }}
+                  />
+                </div>
+                <div style={{ width: "60px", height: "100%" }}>
+                  <Button
+                    variant="primary"
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      try {
+                        await axios
+                          .post(
+                            "http://localhost:3000/movie",
+                            {
                               movieId: movieId,
                               comment: comment
-                            })
-                            .then((res) => {
-                              if (res.data === "New post!") {
-                                setComment("");
-                                //setLoading(true);
-                                loadNewComment();
+                            },
+                            {
+                              headers: {
+                                Authorization: `Bearer ${getCookie("user")}`
                               }
-                            });
-                        } catch (err) {
-                          return console.log(err);
-                        }
-                      }}
-                    >
-                      Post
-                    </Button>
-                  </div>
-                </Col>
-              </Row>
+                            }
+                          )
+                          .then((res) => {
+                            if (res.data === "New post!") {
+                              setComment("");
+                              //setLoading(true);
+                              loadNewComment();
+                            }
+                          });
+                      } catch (err) {
+                        return console.log(err);
+                      }
+                    }}
+                    style={{ width: "100%" }}
+                  >
+                    Post
+                  </Button>
+                </div>
+              </Col>
             </Col>
           </Row>
         </Container>

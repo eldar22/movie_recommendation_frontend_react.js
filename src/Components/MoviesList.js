@@ -25,6 +25,7 @@ import { useCookies } from "react-cookie";
 import getCookie from "./Cookies/getCookie";
 import Cookies from "js-cookie";
 import deleteCookie from "./Cookies/deleteCookie";
+var localStorage = require("localStorage");
 
 function MoviesList() {
   const [movieList, setMovieList] = useState([]);
@@ -56,7 +57,8 @@ function MoviesList() {
           headers: { Authorization: `Bearer ${getCookie("user")}` }
         })
         .then((res) => {
-          setSavedMovies(JSON.parse(res.data.savedMovies));
+          localStorage.setItem("savedMovies", res.data.savedMovies);
+          setSavedMovies(JSON.parse(localStorage.getItem("savedMovies")));
         });
 
       setLoading(false);
@@ -64,17 +66,6 @@ function MoviesList() {
       console.log(err);
     }
   }, [genre]);
-
-  /*useEffect(async () => {
-    await axios.get("http://localhost:3000/movies_list").then((res) => {
-      if (res.data === "Not logged in!") {
-        window.location.href = "http://localhost:3001/login";
-      } else {
-        setUser([res.data.firstName, res.data.lastName]);
-        console.log(GetCookie("user"));
-      }
-    });
-  }, []);*/
 
   useEffect(async () => {
     await axios
@@ -89,7 +80,20 @@ function MoviesList() {
         ) {
           window.location.href = "http://localhost:3001/login";
         } else {
-          setUser([res.data.firstName, res.data.lastName]);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              firstName: res.data.firstName,
+              lastName: res.data.lastName
+            })
+          );
+          //setUser([res.data.firstName, res.data.lastName]);
+          setUser([
+            JSON.parse(localStorage.getItem("user")).firstName,
+            JSON.parse(localStorage.getItem("user")).lastName
+          ]);
+
+          console.log(user[0]);
         }
       });
   }, []);
@@ -100,7 +104,7 @@ function MoviesList() {
         headers: { Authorization: `Bearer ${getCookie("user")}` }
       })
       .then((res) => {
-        setSavedMovies(JSON.parse(res.data.savedMovies));
+        setSavedMovies(JSON.parse(localStorage.getItem("savedMovies")));
       });
   };
 
@@ -320,7 +324,7 @@ function MoviesList() {
     const itemList = sorted.map((item, index) => {
       //movieList
       return (
-        <Col sm={2} key={index} className="movie-card">
+        <Col xs={6} sm={4} md={3} lg={2} key={index} className="movie-card">
           <Card>
             <Card.Img variant="top" src={item.image} className="movie-poster" />
             <Card.Body>
@@ -371,10 +375,15 @@ function MoviesList() {
           <SelectSmall />
           <OffCanvasExample placement={"end"} name="Profile" />
     </header>*/}
-
-        <Navbar bg="light" variant="light" id="nav-bar" sticky="top">
+        <h5 style={{ color: "white" }}>List of movies</h5>
+        <Navbar
+          expand={"sm"}
+          bg="light"
+          variant="light"
+          id="nav-bar"
+          sticky="top"
+        >
           <Container>
-            <Navbar.Brand href="#home">List of movies</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Item>
                 <Filter />
