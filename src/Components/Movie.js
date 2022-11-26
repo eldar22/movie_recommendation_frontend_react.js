@@ -206,7 +206,12 @@ function Movie() {
               md={5}
               lg={5}
               className="trailer"
-              style={{ padding: "0px", marginRight: "5px", height: "40vh" }}
+              style={{
+                padding: "0px",
+                marginRight: "5px",
+                marginBottom: "50px",
+                minHeight: "45vh"
+              }}
             >
               <p className="section-name">Trailer</p>
               <iframe title="nn" width="100%" height="100%" src={videoUrl} />
@@ -218,7 +223,7 @@ function Movie() {
               md={5}
               lg={5}
               className="comment-section"
-              style={{ padding: "0px", marginLeft: "5px", height: "40vh" }}
+              style={{ padding: "0px", minHeight: "45vh" }}
             >
               <p className="section-name">Comments</p>
               <Row className="comments">
