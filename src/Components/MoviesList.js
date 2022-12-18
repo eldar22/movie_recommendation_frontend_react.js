@@ -259,6 +259,7 @@ function MoviesList() {
                 try {
                   await axios
                     .delete(`http://localhost:3000/movies_list`, {
+                      headers: { Authorization: `Bearer ${getCookie("user")}` },
                       data: {
                         title: item.title,
                         movieId: item.movieId

@@ -17,7 +17,7 @@ function Login() {
     <div className="login-body">
       <Container fluid>
         <Row>
-          <Col sm={3} className="login-form">
+          <Col xs={6} sm={5} md={4} lg={3} className="login-form">
             <h3 className="login-page-info">Login page</h3>
             <Form
               onSubmit={async (e) => {
@@ -30,6 +30,7 @@ function Login() {
                     })
                     .then((res) => {
                       if (res.data.status === "Login passed!") {
+                        console.log("xxx", res.data.token);
                         setCookie("user", res.data.token);
                         window.location.href = `http://localhost:3001/movies_list`;
                       } else {

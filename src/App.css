@@ -87,7 +87,9 @@
   background-color: rgb(33, 33, 32);
   min-height: 100vh;
   color: white;
-  padding-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .comment-input {
@@ -190,8 +192,4 @@
 
 .bi {
   margin-left: 5px;
-}
-
-.registration-form {
-  margin-left: 20px;
 }
